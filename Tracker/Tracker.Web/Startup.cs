@@ -1,5 +1,6 @@
 ﻿namespace Tracker.Web
 {
+    using MediatR;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMediatR(typeof(Startup));
             services.AddSingleton<IItemRepository, ItemRepository>();
         }
 
