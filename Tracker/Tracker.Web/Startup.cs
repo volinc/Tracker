@@ -1,13 +1,15 @@
 ﻿namespace Tracker.Web
 {
+    using System.Reflection;
+    using Microsoft.OpenApi.Models;
+    using FluentValidation.AspNetCore;
     using MediatR;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Tracker.Web.Models;
-
+    
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -20,9 +22,17 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tracker API", Version = "v1" });
+            });
+
+            var executingAssembly = Assembly.GetExecutingAssembly();
+
+            services.AddControllers()
+                    .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssembly(executingAssembly));
+
             services.AddMediatR(typeof(Startup));
-            services.AddSingleton<IItemRepository, ItemRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -38,6 +48,12 @@
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tracker API v1");
             });
         }
     }
