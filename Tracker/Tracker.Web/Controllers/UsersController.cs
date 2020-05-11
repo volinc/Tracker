@@ -1,45 +1,44 @@
 ﻿namespace Tracker.Web.Controllers
 {
-    using System;
+    using MediatR;
     using System.Threading.Tasks;
-    using Tracker.Web.Models;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
+    using Tracker.Web.Application;
 
     [Route("[Controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IEnumerable<User>> ReadAllAsync()
+        private readonly IMediator mediator;
+
+        public UsersController(IMediator mediator)
         {
-            await Task.CompletedTask;
-            return Array.Empty<User>();
+            this.mediator = mediator;
         }
 
-        //[HttpGet("{id}")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //public ActionResult<Item> GetItem(string id)
-        //{
-        //    var item = itemRepository.Get(id);
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IEnumerable<UserViewModel>> ReadAllAsync()
+        {
+            return await mediator.Send(new UsersQuery());
+        }
 
-        //    if (item == null)
-        //        return NotFound();
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<UserViewModel> CreateAsync(UserCreateCommand command)
+        {
+            return await mediator.Send(command);
+        }
 
-        //    return item;
-        //}
-
-        //[HttpPost]
-        //[ProducesResponseType(StatusCodes.Status201Created)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //public ActionResult<Item> Create([FromBody]Item item)
-        //{
-        //    itemRepository.Add(item);
-        //    return CreatedAtAction(nameof(GetItem), new { item.Id }, item);
-        //}
+        [HttpGet("{userId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<UserViewModel> ReadAsync(long userId)
+        {
+            return await mediator.Send(new UsersQuery());
+        }
 
         //[HttpPut]
         //[ProducesResponseType(StatusCodes.Status204NoContent)]
