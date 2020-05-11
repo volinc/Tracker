@@ -37,7 +37,10 @@
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<UserViewModel> ReadAsync(long userId)
         {
-            return await mediator.Send(new UsersQuery());
+            return await mediator.Send(new UserQuery
+            {
+                UserId = userId
+            });
         }
 
         //[HttpPut]
