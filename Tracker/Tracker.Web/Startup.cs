@@ -9,7 +9,9 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    
+    using FluentValidation;
+    using Tracker.Web.Application;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -28,9 +30,11 @@
             });
 
             var executingAssembly = Assembly.GetExecutingAssembly();
+            services.AddValidatorsFromAssembly(executingAssembly);
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-            services.AddControllers()
-                    .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssembly(executingAssembly));
+            services.AddControllers();
+                    //.AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssembly(executingAssembly));
 
             services.AddMediatR(typeof(Startup));
         }
