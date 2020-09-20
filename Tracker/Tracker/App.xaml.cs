@@ -2,7 +2,6 @@
 {
     using Xamarin.Essentials;
     using Xamarin.Forms;
-    using Tracker.Services;
     using Tracker.Views;
 
     public partial class App : Application
@@ -18,10 +17,6 @@
         {
             InitializeComponent();
 
-            if (UseMockDataStore)
-                DependencyService.Register<MockDataStore>();
-            else
-                DependencyService.Register<AzureDataStore>();
             MainPage = new MainPage();
         }
 
