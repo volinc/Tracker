@@ -28,6 +28,14 @@
   </Resources>
 
   <Applications>
+    <Extension Category="windows.backgroundTasks" EntryPoint="Shiny.Support.Uwp.ShinyBackgroundTask">
+        <BackgroundTasks>
+            <Task Type="general"/>
+            <Task Type="systemEvent"/>
+            <Task Type="timer"/>
+            <Task Type="location" />
+        </BackgroundTasks>
+    </Extension>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
       EntryPoint="Tracker.UWP.App">

@@ -17,6 +17,8 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Tracker.UWP
 {
+    using Shiny;
+
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
@@ -28,6 +30,8 @@ namespace Tracker.UWP
         /// </summary>
         public App()
         {
+            this.ShinyInit(new YourStartup());
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }

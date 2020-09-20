@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
-using UIKit;
-
-namespace Tracker.iOS
+﻿namespace Tracker.iOS
 {
+    using Foundation;
+    using UIKit;
+    using Shiny;
+    using System;
+
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
@@ -22,10 +20,15 @@ namespace Tracker.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            this.ShinyFinishedLaunching(new YourStartup());
+
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }
+
+        public override void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
+            => this.ShinyPerformFetch(completionHandler);
     }
 }
