@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using FluentValidation;
-using MediatR;
-
-namespace Tracker.Web.Application
+﻿namespace Tracker.Web.Application
 {
-    public class ValidationBehavior<TRequest, TResponce>
-        : IPipelineBehavior<TRequest, TResponce> where TRequest : IRequest<TResponce>
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using FluentValidation;
+    using MediatR;
+    using ValidationException = FluentValidation.ValidationException;
+
+    public class ValidationBehavior<TRequest, TResponse>
+        : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
         private readonly IEnumerable<IValidator<TRequest>> validators;
 
@@ -17,9 +18,9 @@ namespace Tracker.Web.Application
             this.validators = validators;
         }
 
-        public Task<TResponce> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponce> next)
+        public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            var context = new ValidationContext(request);
+            var context = new ValidationContext<TRequest>(request);
 
             var failures = validators.Select(x => x.Validate(context))
                                      .SelectMany(x => x.Errors)
