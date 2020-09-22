@@ -15,8 +15,7 @@
         public override void OnCreate()
         {
             base.OnCreate();
-
-            Shiny.AndroidShinyHost.Init(this, new YourStartup());
+            Xamarin.Essentials.Platform.Init(this);
         }
     }
 }
