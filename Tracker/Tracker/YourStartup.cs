@@ -1,6 +1,5 @@
 ﻿namespace Tracker
 {
-    using System;
     using System.Threading.Tasks;
     using Microsoft.Extensions.DependencyInjection;
     using Shiny;
@@ -10,13 +9,7 @@
     {
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.UseGps<GpsDelegate>(new GpsRequest
-            {
-                ThrottledInterval = TimeSpan.FromSeconds(2),
-                Interval = TimeSpan.FromSeconds(4),
-                Priority = GpsPriority.Highest,
-                UseBackground = true
-            });
+            services.UseGps<GpsDelegate>();
             services.UseGeofencing<GeofenceDelegate>();
         }
     }

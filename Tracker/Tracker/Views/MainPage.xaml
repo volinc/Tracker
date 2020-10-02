@@ -7,7 +7,11 @@
             xmlns:views="clr-namespace:Tracker.Views"
             x:Class="Tracker.Views.MainPage">
     <StackLayout>
-        <Button
-            Text="Start" />
+        <Label
+            x:Name="Lat"
+            Text="Lat" />
+        <Label
+            x:Name="Lon"
+            Text="Lon" />
     </StackLayout>
 </ContentPage>

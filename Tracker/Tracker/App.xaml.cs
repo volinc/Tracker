@@ -3,6 +3,7 @@
     using Xamarin.Forms;
     using Tracker.Views;
     using Shiny.Locations;
+    using System;
 
     public partial class App : Application
     {
@@ -18,6 +19,13 @@
 
         protected override void OnStart()
         {
+            gpsManager.StartListener(new GpsRequest
+            {
+                ThrottledInterval = TimeSpan.FromSeconds(2),
+                Interval = TimeSpan.FromSeconds(4),
+                Priority = GpsPriority.Highest,
+                UseBackground = true
+            });
         }
 
         protected override void OnSleep()
