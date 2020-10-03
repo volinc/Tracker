@@ -1,4 +1,4 @@
-﻿namespace Tracker.Web.Application
+﻿namespace Tracker.Web.Application.User.Commands
 {
     using FluentValidation;
 

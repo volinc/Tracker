@@ -1,7 +1,7 @@
-﻿namespace Tracker.Web.Application
+﻿namespace Tracker.Web.Application.User.Queries
 {
-    using MediatR;
     using System.Collections.Generic;
+    using MediatR;
 
     public class UsersQuery : IRequest<IEnumerable<UserViewModel>>
     {

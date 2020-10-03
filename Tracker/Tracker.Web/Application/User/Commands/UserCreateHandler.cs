@@ -1,9 +1,9 @@
-﻿namespace Tracker.Web.Application
+﻿namespace Tracker.Web.Application.User.Commands
 {
-    using MediatR;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using MediatR;
 
     public class UserCreateHandler : IRequestHandler<UserCreateCommand, UserViewModel>
     {

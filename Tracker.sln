@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker.Android", "Tracker\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker.iOS", "Tracker\Tracker.iOS\Tracker.iOS.csproj", "{26706662-7759-4A36-96F8-69DF584EB81E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker", "Tracker\Tracker\Tracker.csproj", "{9FC3D32D-1117-4FDA-ABFF-1E479943A62F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracker", "Tracker\Tracker\Tracker.csproj", "{9FC3D32D-1117-4FDA-ABFF-1E479943A62F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker.Web", "Tracker\Tracker.Web\Tracker.Web.csproj", "{4BEF51E6-929E-408D-9A63-A4346F4B07A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracker.Web", "Tracker\Tracker.Web\Tracker.Web.csproj", "{4BEF51E6-929E-408D-9A63-A4346F4B07A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker.UWP", "Tracker\Tracker.UWP\Tracker.UWP.csproj", "{4A73B448-BF7E-4320-8406-E5C29E9079E2}"
 EndProject

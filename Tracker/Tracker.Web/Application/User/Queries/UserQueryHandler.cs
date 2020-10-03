@@ -1,4 +1,4 @@
-﻿namespace Tracker.Web.Application
+﻿namespace Tracker.Web.Application.User.Queries
 {
     using System.Threading;
     using System.Threading.Tasks;
