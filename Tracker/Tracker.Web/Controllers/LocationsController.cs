@@ -6,15 +6,17 @@
     using Microsoft.AspNetCore.Mvc;
     using Models;
 
-    [Route("[Controller]")]
+    [Route("locations")]
     [ApiController]
     public class LocationsController : ApiControllerBase
     {
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task CreateAsync(LocationCreateView view)
         {
-            await Mediator.Send(new LocationCreateCommand(view.Latitude, view.Longitude));
+            await Mediator.Send(new CreateLocationCommand(view.Latitude, view.Longitude));
         }
     }
 }

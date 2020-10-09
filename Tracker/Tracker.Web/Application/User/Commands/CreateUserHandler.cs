@@ -5,9 +5,9 @@
     using System.Threading.Tasks;
     using MediatR;
 
-    public class UserCreateHandler : IRequestHandler<UserCreateCommand, UserViewModel>
+    public class CreateUserHandler : IRequestHandler<CreateUserCommand, UserViewModel>
     {
-        public Task<UserViewModel> Handle(UserCreateCommand command, CancellationToken cancellationToken)
+        public Task<UserViewModel> Handle(CreateUserCommand command, CancellationToken cancellationToken)
         {
             return Task.FromResult(new UserViewModel
             {

@@ -2,9 +2,9 @@
 {
     using MediatR;
 
-    public class LocationCreateCommand : IRequest<Unit>
+    public class CreateLocationCommand : IRequest<Unit>
     {
-        public LocationCreateCommand(double latitude, double longitude)
+        public CreateLocationCommand(double latitude, double longitude)
         {
             Latitude = latitude;
             Longitude = longitude;

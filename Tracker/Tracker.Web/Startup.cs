@@ -2,7 +2,6 @@
 {
     using System.Reflection;
     using Microsoft.OpenApi.Models;
-    using FluentValidation.AspNetCore;
     using MediatR;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -34,7 +33,6 @@
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             services.AddControllers();
-                    //.AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssembly(executingAssembly));
 
             services.AddMediatR(typeof(Startup));
         }

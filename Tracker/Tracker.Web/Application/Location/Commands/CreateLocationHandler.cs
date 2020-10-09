@@ -4,9 +4,9 @@
     using System.Threading.Tasks;
     using MediatR;
 
-    public class LocationCreateHandler : IRequestHandler<LocationCreateCommand, Unit>
+    public class CreateLocationHandler : IRequestHandler<CreateLocationCommand, Unit>
     {
-        public Task<Unit> Handle(LocationCreateCommand command, CancellationToken cancellationToken)
+        public Task<Unit> Handle(CreateLocationCommand command, CancellationToken cancellationToken)
         {
             return Task.FromResult(Unit.Value);
         }

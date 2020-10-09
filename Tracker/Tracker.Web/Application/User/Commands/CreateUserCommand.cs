@@ -2,7 +2,7 @@
 {
     using MediatR;
 
-    public class UserCreateCommand : IRequest<UserViewModel>
+    public class CreateUserCommand : IRequest<UserViewModel>
     {
         public string Phone { get; set; }
     }

@@ -2,9 +2,9 @@
 {
     using FluentValidation;
 
-    public class UserCreateValidator : AbstractValidator<UserCreateCommand>
+    public class CreateUserValidator : AbstractValidator<CreateUserCommand>
     {
-        public UserCreateValidator()
+        public CreateUserValidator()
         {
             RuleFor(p => p.Phone).NotNull()
                 .Length(10)
