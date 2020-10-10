@@ -18,7 +18,7 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "SQLAZURECONNSTR_LOGGER": "Server=sql; Database=taxys-local-db-devicelogger; User Id=sa; Password=12345(!)a;",
+        "SQLAZURECONNSTR_LOGGER": "Server=localhost; Database=taxys-local-db-devicelogger; User Id=sa; Password=12345(!)a;",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"

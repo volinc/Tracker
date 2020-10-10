@@ -41,7 +41,7 @@
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-            var connectionString = Configuration.GetValue<string>("SQLAZURECONNSTR_LOGGER", "Server=sql; Database=taxys-local-db-devicelogger; User Id=sa; Password=12345(!)a;");
+            var connectionString = Configuration.GetValue<string>("SQLAZURECONNSTR_LOGGER", "Server=localhost; Database=taxys-local-db-devicelogger; User Id=sa; Password=12345(!)a;");
             services.AddDbContextPool<TrackerDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddSingleton<IBinarySerializer, Utf8JsonBinarySerializer>();
