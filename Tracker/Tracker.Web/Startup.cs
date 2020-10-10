@@ -1,6 +1,7 @@
 ﻿namespace Tracker.Web
 {
     using System.Reflection;
+    using Data;
     using MediatR;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -8,6 +9,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using FluentValidation;
+    using Microsoft.EntityFrameworkCore;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
     using Taxys.Data;
@@ -39,6 +41,9 @@
             services.AddMediatR(typeof(Startup));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+            var connectionString = Configuration.GetValue<string>("SQLAZURECONNSTR_LOGGER");
+            services.AddDbContextPool<TrackerDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddSingleton<IBinarySerializer, Utf8JsonBinarySerializer>();
             services.AddDistributedMemoryCache();
