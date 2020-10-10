@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Models;
+    using Taxys.Rest.Authentication;
 
     [Route("locations")]
     [ApiController]
@@ -16,7 +17,10 @@
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task CreateAsync(LocationCreateView view)
         {
-            await Mediator.Send(new CreateLocationCommand(view.Latitude, view.Longitude));
+            var userId = User.Identity.GetId();
+            var command = new CreateLocationCommand(userId, view.Latitude, view.Longitude, view.Heading, view.Speed, view.Timestamp);
+
+            await Mediator.Send(command);
         }
     }
 }
