@@ -33,7 +33,7 @@
 
             services.AddCors();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddTaxysJwtBearer();
+                    .AddTaxysJwtBearer();
 
             services.AddJwtBearerAuthenticationService(Configuration);
             services.AddAuthorization();
@@ -47,7 +47,6 @@
             var connectionString = Configuration.GetConnectionString("LOGGER");
             services.AddDbContextPool<TrackerDbContext>(options => options.UseSqlServer(connectionString));
 
-            services.AddSingleton<IBinarySerializer, Utf8JsonBinarySerializer>();
             services.AddDistributedMemoryCache();
 
             services.AddControllers()

@@ -18,6 +18,7 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
+        "TOKEN_PASSWORD": "C0BD5D11CB9E49F98A5D750D4403E1F1",
         "SQLAZURECONNSTR_LOGGER": "Server=localhost; Database=taxys-local-db-devicelogger; User Id=sa; Password=12345(!)a;",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
