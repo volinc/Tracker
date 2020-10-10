@@ -5,6 +5,7 @@
     using Application.User.Queries;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Taxys.Rest.Authentication;
 
     [Route("users")]
     [ApiController]
@@ -16,7 +17,10 @@
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<UserViewModel> ReadAsync()
         {
-            return await Mediator.Send(new UserQuery());
+            var userId = User.Identity.GetId();
+            var query = new UserQuery(userId);
+
+            return await Mediator.Send(query);
         }
     }
 }

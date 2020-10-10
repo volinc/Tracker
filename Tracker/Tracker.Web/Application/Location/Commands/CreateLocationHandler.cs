@@ -6,7 +6,7 @@
 
     public class CreateLocationHandler : IRequestHandler<CreateLocationCommand, Unit>
     {
-        public Task<Unit> Handle(CreateLocationCommand command, CancellationToken cancellationToken)
+        public Task<Unit> Handle(CreateLocationCommand request, CancellationToken cancellationToken)
         {
             return Task.FromResult(Unit.Value);
         }

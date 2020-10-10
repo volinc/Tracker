@@ -3,12 +3,22 @@
     using System.Threading;
     using System.Threading.Tasks;
     using MediatR;
+    using Taxys.Rest.Authentication;
 
     public class SignOutHandler : IRequestHandler<SignOutCommand>
     {
-        public Task<Unit> Handle(SignOutCommand command, CancellationToken cancellationToken)
+        private readonly JwtBearerAuthenticationService authenticationService;
+
+        public SignOutHandler(JwtBearerAuthenticationService authenticationService)
         {
-            return Task.FromResult(Unit.Value);
+            this.authenticationService = authenticationService;
+        }
+
+        public async Task<Unit> Handle(SignOutCommand request, CancellationToken cancellationToken)
+        {
+            await authenticationService.RemoveTokensAsync(Audience.Runner, request.UserId);
+
+            return Unit.Value;
         }
     }
 }

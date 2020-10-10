@@ -4,5 +4,11 @@
 
     public class UserQuery : IRequest<UserViewModel>
     {
+        public UserQuery(long userId)
+        {
+            UserId = userId;
+        }
+
+        public long UserId { get; }
     }
 }
