@@ -48,14 +48,4 @@
             };
         }
     }
-
-    public static class Audience
-    {
-        public const string Runner = "Runner";
-    }
-
-    public static class Role
-    {
-        public const string Runner = "Runner";
-    }
 }
