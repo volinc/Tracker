@@ -8,6 +8,8 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using FluentValidation;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
     using Taxys.Data;
     using Taxys.Rest;
     using Taxys.Rest.Authentication;
@@ -41,17 +43,18 @@
             services.AddSingleton<IBinarySerializer, Utf8JsonBinarySerializer>();
             services.AddDistributedMemoryCache();
 
-            services.AddControllers();
+            services.AddControllers()
+                    // https://github.com/aspnet/AspNetCore/issues/13564
+                    .AddNewtonsoftJson(options =>
+                    {
+                        options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseHttpsRedirection();
             app.UseRouting();
 
             app.UseCors(builder =>
