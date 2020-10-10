@@ -28,6 +28,9 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureApiBehaviorOptions();
+            services.AddHealthChecks();
+
             services.AddCors();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddTaxysJwtBearer();
@@ -75,7 +78,8 @@
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers().RequireAuthorization();
+                endpoints.MapHealthChecks("/health");
             });
 
             app.UseSwagger("Tracker");
