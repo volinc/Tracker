@@ -28,6 +28,8 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            
             services.ConfigureApiBehaviorOptions();
             services.AddHealthChecks();
 
@@ -50,6 +52,7 @@
             services.AddDistributedMemoryCache();
 
             services.AddControllers()
+                    .AddDataAnnotationsLocalization()
                     // https://github.com/aspnet/AspNetCore/issues/13564
                     .AddNewtonsoftJson(options =>
                     {
@@ -61,6 +64,13 @@
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var supportedCultures = new[] { "en", "ru" };
+            var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
+
+            app.UseRequestLocalization(localizationOptions);
+
             app.UseRouting();
 
             app.UseCors(builder =>
