@@ -6,4 +6,9 @@
     <assembly fullname="Shiny.Locations">
         <namespace fullname="*" />
     </assembly>
+
+	<assembly fullname="Prism" />
+	<assembly fullname="Prism.Forms" />
+	<assembly fullname="Prism.DryIoc.Forms" />
+	<assembly fullname="DryIoc" />
 </linker>

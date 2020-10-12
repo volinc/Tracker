@@ -1,14 +1,13 @@
 ﻿namespace Tracker.Droid
 {
     using System;
-    using Shiny;
     using Android.App;
     using Android.Runtime;
 
     [Application]
-    public class YourApplication : Shiny.ShinyAndroidApplication<YourStartup>
+    public class MainApplication : Shiny.ShinyAndroidApplication<YourStartup>
     {
-        public YourApplication(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer)
+        public MainApplication(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer)
         {
         }
 
